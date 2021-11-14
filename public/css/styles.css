@@ -1,0 +1,107 @@
+html {
+    --primary-background-color: #f9f9f9;
+    --alternate-background-color: #fff;
+    --nav-bg: #fff;
+    --nav-color: #191919;
+    --input-field-color: #fff;
+    --input-field-border-color: #ced4da;
+    --nav-title-color: #191919;
+    --nav-title-hover-color: #666;
+    --nav-link-hover-color: #3f3f3f;
+    --primary-text-color: #212529;
+}
+
+html[data-theme='dark'] {
+    --primary-background-color: #1f1f1f;
+    --alternate-background-color: #111111;
+    --nav-bg: #111;
+    --nav-color: #fff;
+    --input-field-color: #333333;
+    --input-field-border-color: #505050;
+    --input-field-text-color: #aaa;
+    --nav-title-color: #d2d2d2;
+    --nav-title-hover-color: #707070;
+    --nav-link-hover-color: #969696;
+    --primary-text-color: #fdfdfd;
+    --toggler-background-color: #fdfdfd;
+}
+
+body {
+    background-color: var(--primary-background-color);
+    color: var(--primary-text-color);
+}
+
+.navbar
+{
+    min-height: 80px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--nav-color);
+}
+
+.navbar-toggler {
+    background: var(--toggler-background-color);
+}
+
+.navbar-light {
+    background-color: var(--nav-bg);
+}
+
+.nav-link-custom {
+    color: var(--nav-color);
+    text-decoration: none;
+    padding-right: 20px;
+}
+
+.navbar-title {
+    color: var(--nav-title-color);
+    text-decoration: none;
+    font-size: 2rem;
+    padding-right: 40px;
+}
+
+.navbar-title:hover {
+    color: var(--nav-title-hover-color);
+}
+
+.nav-link-custom:hover {
+    color: var(--nav-link-hover-color);
+}
+
+.form-control {
+    background-color: var(--input-field-color);
+    border-color: var(--input-field-border-color);
+    color: var(--input-field-text-color);
+}
+
+.form-control:active {
+    background-color: var(--input-field-color);
+    color: var(--input-field-text-color);
+}
+
+.form-control:focus {
+    background-color: var(--input-field-color);
+    color: var(--input-field-text-color);
+}
+
+.form-info {
+    margin-bottom: 50px;
+}
+
+.login-form {
+    margin-left: 300px;
+    margin-right: 300px;
+    padding: 80px 80px 80px 80px;
+    background-color: var(--alternate-background-color);
+}
+
+
+
+
+@media (max-width: 1000px) {
+    .login-form {
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 40px 40px 40px 40px;
+    }
+}
