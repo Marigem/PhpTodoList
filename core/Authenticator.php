@@ -2,8 +2,12 @@
 
 namespace app\core;
 
+use app\core\User;
+
 class Authenticator 
 {
+    public ?User $user;
+
     public static function registerUser($user)
     {
         $connection = new Connection();
@@ -32,5 +36,10 @@ class Authenticator
         $statement->execute();
 
         return $statement->rowCount() != 0;
+    }
+
+    public function isGuest()
+    {
+        return $this->user;
     }
 }

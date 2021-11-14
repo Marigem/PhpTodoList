@@ -1,3 +1,15 @@
+<?php
+
+use app\core\Application;
+use app\core\Authenticator;
+use app\core\Session;
+
+$auth = new Authenticator();
+$session = new Session();
+$app = new Application($auth, $session);
+
+?>
+
 <!doctype html>
 <html lang="en">
 
