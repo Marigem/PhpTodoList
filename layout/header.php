@@ -2,11 +2,17 @@
 
 use app\core\Application;
 use app\core\Authenticator;
+use app\core\ItemCreator;
+use app\core\ItemFactory;
+use app\core\ItemFetcher;
 use app\core\Session;
 
+$creator = new ItemCreator();
+$fetcher = new ItemFetcher();
+$factory = new ItemFactory();
 $auth = new Authenticator();
 $session = new Session();
-$app = new Application($auth, $session);
+$app = new Application($auth, $session, $creator, $fetcher, $factory);
 
 ?>
 
@@ -45,12 +51,21 @@ $app = new Application($auth, $session);
                 </ul>
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <?php if (Application::$app->auth->isGuest()): ?>
                         <li class="nav-item">
                             <a class="nav-link-custom" aria-current="page" href="login.php">Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link-custom" aria-current="page" href="register.php">Register</a>
                         </li>
+                        <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link-custom" aria-current="page" href="profile.php"><?php echo Application::$app->auth->user->name ?></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link-custom" aria-current="page" href="logout.php">Logout</a>
+                        </li>
+                        <?php endif; ?>
                         <li class="nav-item">
                             <label class="switch">
                                 <input id="themeswitch" type="checkbox" name="theme">

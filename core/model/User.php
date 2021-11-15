@@ -1,6 +1,6 @@
 <?php 
 
-namespace app\core;
+namespace app\core\model;
 
 class User
 {
@@ -11,7 +11,7 @@ class User
     public function __construct($id, $name, $email)
     {
         $this->id = $id;
-        $this->name = $id;
-        $this->email = $id;
+        $this->name = $name;
+        $this->email = $email;
     }
 }

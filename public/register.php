@@ -1,10 +1,16 @@
 <?php require_once __DIR__.'/../vendor/autoload.php';
 
+use app\core\Application;
 use app\core\Authenticator;
 use app\core\InputValidator;
 
     include_once __DIR__.'/../layout/header.php';
 
+if (!Application::$app->auth->isGuest())
+{
+    header('Location: index.php');
+}
+    
 $errors = [];
 $name = "";
 $email = "";
@@ -55,7 +61,14 @@ $passwordConfirm = "";
             ];
 
             $result = Authenticator::registerUser($user);
-            header('Location: dashboard.php');
+
+            
+            if ($result)
+            {
+                Application::$app->auth->login($email, $password);
+                Application::$app->creator->createTodoList("My first task is:", "Creating a new todo list!");
+                header('Location: profile.php');
+            }
         }
         
     }

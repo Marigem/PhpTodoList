@@ -4,17 +4,6 @@
 
 ?>
 
-<?php if (!$_SESSION['just_logged_in']): ?>
-<div id="topalert" class="alert alert-success" role="alert">
-    Logged in.
-</div>
-
-<?php 
-    $_SESSION['just_logged_in'] = 'false';   
-    endif; 
-?>
-
-
 <div class="row">
     <div class="col-lg-5 content">
         <h3>Public todo lists</h3>
