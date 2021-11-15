@@ -1,106 +1,55 @@
-<?php 
-    require_once __DIR__.'/../vendor/autoload.php';
+<?php
+
+use app\core\Application;
+use app\core\InputValidator;
+
+require_once __DIR__.'/../vendor/autoload.php';
     include_once __DIR__.'/../layout/header.php';
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST')
+    {
+        $delete_list_id = InputValidator::post_data("delete-list");
+
+    if ($delete_list_id)
+    {
+        Application::$app->creator->deleteTodoList($delete_list_id);
+    }
+    }
+
+    $public_todo_lists = Application::$app->fetcher->fetchPublicLists();
+    $public_tasks = Application::$app->fetcher->fetchPublicTasks();
 ?>
 
 <div class="row">
     <div class="col-lg-5 content">
-        <h3>Public todo lists</h3>
+        <h3 class="p-2">Public todo lists</h3>
         <br>
         <ol class="list-group list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold"><a class="todo-list-item-link" href="#">Subheading</a></div>
-                    Content for list item
-                   
-                </div>
-                <div class="ms-2 ">
-                    <br>
-                    <button class="badge bg-primary rounded-pill todo-list-button">Share</button>
-                    <button class="badge bg-danger rounded-pill todo-list-button">Delete</button>
-                </div>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold"><a class="todo-list-item-link" href="#">Subheading</a></div>
-                    Content for list item
-                   
-                </div>
-                <div class="ms-2 ">
-                    <br>
-                    <button class="badge bg-primary rounded-pill todo-list-button">Share</button>
-                    <button class="badge bg-danger rounded-pill todo-list-button">Delete</button>
-                </div>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold"><a class="todo-list-item-link" href="#">Subheading</a></div>
-                    Content for list item
-                   
-                </div>
-                <div class="ms-2 ">
-                    <br>
-                    <button class="badge bg-primary rounded-pill todo-list-button">Share</button>
-                    <button class="badge bg-danger rounded-pill todo-list-button">Delete</button>
-                </div>
-            </li>
+            <?php
+            
+            foreach ($public_todo_lists as $listItem)
+            {
+                echo Application::$app->factory->todoListItem($listItem, true);
+            }
+            
+            
+            ?>
         </ol>
     </div>
     <div class="col-lg content">
-        <h3>Public tasks</h3>
+        <h3 class="p-2 mb-0">Public tasks</h3>
+        <p class="text-sm-start ms-2 mt-0"><i>All public tasks are anonymous</i></p>
         <br>
         <ol class="list-group list-group-numbered">
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                </div>
-                <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                </div>
-                <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                </div>
-                <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                </div>
-                <span class="badge bg-primary rounded-pill">14</span>
-            </li>
+            <?php
             
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                </div>
-                <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                </div>
-                <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="fw-bold">Subheading</div>
-                    Content for list item
-                </div>
-                <span class="badge bg-primary rounded-pill">14</span>
-            </li>
+            foreach ($public_tasks as $task)
+            {
+                echo Application::$app->factory->taskItem($task['list-id'], $task, true);
+            }
+
+
+            ?>
         </ol>
     </div>
 </div>

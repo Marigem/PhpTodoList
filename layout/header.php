@@ -6,13 +6,16 @@ use app\core\ItemCreator;
 use app\core\ItemFactory;
 use app\core\ItemFetcher;
 use app\core\Session;
+use app\core\ShareUnshare;
 
 $creator = new ItemCreator();
 $fetcher = new ItemFetcher();
 $factory = new ItemFactory();
 $auth = new Authenticator();
 $session = new Session();
-$app = new Application($auth, $session, $creator, $fetcher, $factory);
+$sharing = new ShareUnshare();
+
+$app = new Application($auth, $session, $creator, $fetcher, $factory, $sharing);
 
 ?>
 
@@ -61,6 +64,14 @@ $app = new Application($auth, $session, $creator, $fetcher, $factory);
                         <?php else: ?>
                         <li class="nav-item">
                             <a class="nav-link-custom" aria-current="page" href="profile.php"><?php echo Application::$app->auth->user->name ?></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link-custom" aria-current="page" href="inbox.php">inbox
+                            <?php $notificationCount = Application::$app->sharing->getNotificationCount();
+                                if ($notificationCount !== 0): ?>    
+                            <span class="badge bg-danger rounded-pill notification-span"><?php echo $notificationCount ?></span>
+                            <?php endif; ?>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link-custom" aria-current="page" href="logout.php">Logout</a>

@@ -73,9 +73,9 @@ $userTodoLists = Application::$app->fetcher->fetchUserTodoLists();
     <div class="col-lg-8 content">
 
         <div class="row">
-            <div class="col-3">
+            <div class="col-lg-3">
             </div>
-            <div class="col-6">
+            <div class="col-lg-6">
                 <br>
                 <h3>New list</h3>
                 <br>
@@ -83,7 +83,7 @@ $userTodoLists = Application::$app->fetcher->fetchUserTodoLists();
                     <div class="mb-3">
                         <input name="title"
                             class="form-control <?php echo (isset($errors["title"]) ? "is-invalid" : ''); ?>" value=""
-                            placeholder="New list title">
+                            placeholder="Title"  maxlength="35">
                         <div class="invalid-feedback">
                             <?php echo $errors['title'] ?>
                         </div>
@@ -91,7 +91,7 @@ $userTodoLists = Application::$app->fetcher->fetchUserTodoLists();
                     <div class="mb-3">
                             <textarea name="description" 
                                 class="form-control <?php echo (isset($errors["description"]) ? "is-invalid" : ''); ?>" rows="3" 
-                                placeholder="New list description"></textarea>
+                                placeholder="Description" maxlength="135"></textarea>
                         <div class="invalid-feedback">
                             <?php echo $errors['description'] ?>
                         </div>

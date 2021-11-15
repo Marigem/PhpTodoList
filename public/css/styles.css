@@ -130,6 +130,7 @@ body {
 
 .todo-list-button {
     border: none;
+    margin-left: 5px;
 }
 
 .login-error-area {
@@ -142,6 +143,11 @@ body {
     padding-top: 10px;
     margin-bottom: 10px;
     color: white;
+}
+
+.notification-span {
+    display:table-cell;
+    margin-bottom: 5px;
 }
 
 @media (max-width: 1024px) {

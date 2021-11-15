@@ -2,6 +2,8 @@
 
 namespace app\core\model;
 
+use app\core\Application;
+
 class User
 {
     public $id;

@@ -31,4 +31,36 @@ class ItemCreator {
             $statement->execute();
         }
     }
+
+    public function createTask($listId, $description)
+    {
+        if (Application::$app->auth->userOwnsListItem($listId))
+        {
+
+            $connection = new Connection();
+            $statement = $connection->pdo->prepare(
+                'INSERT INTO task (list_id, description) 
+                VALUES(:listId, :description);'
+            );
+    
+            $statement->bindValue('listId', $listId);
+            $statement->bindValue('description', $description);
+            $statement->execute();
+        }
+    }
+
+    public function deleteTask($listId, $taskId)
+    {
+  
+        if (Application::$app->auth->userOwnsListItem($listId))
+        {
+            $connection = new Connection();
+            $statement = $connection->pdo->prepare(
+                'DELETE FROM task WHERE id = :id'
+            );
+    
+            $statement->bindValue('id', $taskId);
+            $statement->execute();
+        }
+    }
 }

@@ -52,6 +52,15 @@ CREATE TABLE public_task_shares (
         REFERENCES task(id)
 );
 
+CREATE TABLE notifications {
+    sender_id INT NOT NULL,
+    recipient_id INT NOT NULL,
+    FOREIGN KEY (sender_id)
+        REFERENCES users(id),
+    FOREIGN KEY (recipient_id)
+        REFERENCES users(id)
+};
+
 CREATE VIEW user_todo_view 
 as SELECT users.id as user_id, 
 todo_list.id as list_id, 
