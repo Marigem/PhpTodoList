@@ -10,14 +10,15 @@
         <div class="mb-3">
             <label class="form-label">Email</label>
             <input name="email" class="form-control <?php echo isset($errors['email']) ? "is-invalid" : "" ?>"
-            value="<?php echo $email ?>">
+            value="<?php echo $email ?>" placeholder="Enter your email">
             <div class="invalid-feedback">
                 <?php echo $errors['email'] ?>
             </div>
         </div>
         <div class="mb-3">
             <label class="form-label">Password</label>
-            <input type="password" name="password" class="form-control <?php echo isset($errors['password']) ? "is-invalid" : "" ?>">
+            <input type="password" name="password" class="form-control <?php echo isset($errors['password']) ? "is-invalid" : "" ?>"
+            placeholder="Enter your password">
             <div class="invalid-feedback">
                 <?php echo $errors['password'] ?>
             </div>

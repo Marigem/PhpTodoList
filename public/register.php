@@ -66,7 +66,7 @@ $passwordConfirm = "";
         <div class="mb-3">
             <label class="form-label">Name</label>
             <input name="name" class="form-control <?php echo isset($errors['name']) ? "is-invalid" : "" ?>"
-            value="<?php echo $name ?>">
+            value="<?php echo $name ?>" placeholder="Enter your full name">
             <div class="invalid-feedback">
                 <?php echo $errors['name'] ?>
             </div>
@@ -74,21 +74,23 @@ $passwordConfirm = "";
         <div class="mb-3">
             <label class="form-label">Email</label>
             <input name="email" class="form-control <?php echo isset($errors['email']) ? "is-invalid" : "" ?>"
-            value="<?php echo $email ?>">
+            value="<?php echo $email ?>" placeholder="Enter your email">
             <div class="invalid-feedback">
                 <?php echo $errors['email'] ?>
             </div>
         </div>
         <div class="mb-3">
             <label class="form-label">Password</label>
-            <input type="password" name="password" class="form-control <?php echo isset($errors['password']) ? "is-invalid" : "" ?>">
+            <input type="password" name="password" class="form-control <?php echo isset($errors['password']) ? "is-invalid" : "" ?>"
+            placeholder="Enter your password">
             <div class="invalid-feedback">
                 <?php echo $errors['password'] ?>
             </div>
         </div>
         <div class="mb-3">
             <label class="form-label">Confirm Password</label>
-            <input type="password" name="passwordConfirm" class="form-control <?php echo isset($errors['passwordConfirm']) ? "is-invalid" : "" ?>">
+            <input type="password" name="passwordConfirm" class="form-control <?php echo isset($errors['passwordConfirm']) ? "is-invalid" : "" ?>"
+            placeholder="Re-enter your password">
             <div class="invalid-feedback">
                 <?php echo $errors['passwordConfirm'] ?>
             </div>

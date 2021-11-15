@@ -9,6 +9,8 @@ html {
     --nav-title-hover-color: #666;
     --nav-link-hover-color: #3f3f3f;
     --primary-text-color: #212529;
+    --list-item-border-color: #ced4da95;
+    
 }
 
 html[data-theme='dark'] {
@@ -24,6 +26,7 @@ html[data-theme='dark'] {
     --nav-link-hover-color: #969696;
     --primary-text-color: #fdfdfd;
     --toggler-background-color: #fdfdfd;
+    --list-item-border-color: #42424295;
 }
 
 body {
@@ -95,8 +98,39 @@ body {
     background-color: var(--alternate-background-color);
 }
 
+.content {
+    background-color: var(--alternate-background-color);
+    border-radius: 10px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+    padding-right: 6px;
+}
 
+.list-group-item {
+    background-color: var(--alternate-background-color);
+    border-color: var(--list-item-border-color) ;
+    color: var(--primary-text-color);
+    border-left: none;
+    border-right: none;
+}
 
+.list-group-item {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.todo-list-item-link {
+    text-decoration: none;
+    color: var(--primary-text-color);
+}
+
+.todo-list-item-link:hover {
+    color: var(--nav-link-hover-color);
+}
+
+.todo-list-button {
+    border: none;
+}
 
 @media (max-width: 1000px) {
     .login-form {
