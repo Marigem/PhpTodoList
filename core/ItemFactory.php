@@ -16,11 +16,15 @@ class ItemFactory
         if ($public)
         {
             $userName = Application::$app->fetcher->fetchUserNameByListId($listItem['id']);
-            $result .= ' <i> - posted by ' . $userName . " </i>" ;
+            $result .= ' <i  style="font-size: 10px;"> - posted by ' . $userName . " </i>" ;
+        }
+        else
+        {
+            $result .= ' <i style="font-size: 10px;"> - click to open </i>';
         }
         
         $result .= ' </a></div>
-            '. $listItem['description'];
+            <span class="todo-list-description">'. $listItem['description'] . '</span>';
         if (Application::$app->auth->userOwnsListItem($listItem['id']))
         {
             $result .= 
@@ -57,7 +61,8 @@ class ItemFactory
 
                 <form action="" method="post" style="display: inline-block">
                     <input name="share-task" type="hidden" value="'. $task['id'] .'">
-                    <button class="badge bg-primary rounded-pill todo-list-button">Share</button>
+                    <button class="badge bg-primary rounded-pill todo-list-button">'. 
+                        (Application::$app->sharing->taskAlreadyShared($task['id']) ? 'Unshare' : 'Share') .'</button>
                 </form>
 
                 <form action="" method="post" style="display: inline-block">

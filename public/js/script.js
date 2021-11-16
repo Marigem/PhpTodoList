@@ -5,8 +5,8 @@ const changeThemeToDark = () => {
     document.documentElement.setAttribute("data-theme", "dark");
     let alert = document
         .getElementById("topalert");
-    if (alert) alert.setAttribute("class", "alert alert-dark");
-    localStorage.setItem("data-theme", "dark"); // save theme to local storage
+    if (alert) alert.setAttribute("class", "alert alert-info");
+    localStorage.setItem("data-theme", "dark");
 };
 
 const changeThemeToLight = () => {
@@ -14,7 +14,7 @@ const changeThemeToLight = () => {
     let alert = document
         .getElementById("topalert");
     if (alert) alert.setAttribute("class", "alert alert-success");
-    localStorage.setItem("data-theme", "light"); // save theme to local storage
+    localStorage.setItem("data-theme", "light");
 };
 
 (function () {

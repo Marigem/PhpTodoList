@@ -8,13 +8,14 @@ require_once __DIR__.'/../vendor/autoload.php';
 
     $errors = [];
     $itemId = htmlentities(htmlspecialchars($_GET['item']));
+    $share_task = InputValidator::post_data('share-task');
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
         $listId = InputValidator::post_data("list-id");
         $delete_task_id = InputValidator::post_data("delete-task");
         $description = InputValidator::post_data("description");
 
-    if (!$delete_task_id)
+    if (!$delete_task_id && !$share_task)
     {
         if (!$description)
         {
@@ -25,6 +26,10 @@ require_once __DIR__.'/../vendor/autoload.php';
         {
             Application::$app->creator->createTask($listId, $description);
         }
+    }
+    if ($share_task)
+    {
+        Application::$app->sharing->shareUnshareTask($share_task);
     }
     else
     {
@@ -46,7 +51,18 @@ require_once __DIR__.'/../vendor/autoload.php';
     <div class="col-lg-8 content">
 
         <div class="row">
-        <h3 class="text-center mt-4"><?php echo $todo_list['title'] ?></h3>
+        <h3 class="text-center mt-4"><?php echo $todo_list['title'] ?>
+        <?php if (Application::$app->auth->userOwnsListItem($todo_list['id'])): ?>
+            <form action="share.php" method="post" style="display:inline-block">
+                <input type="hidden" name="share-list" value="<?php echo $todo_list['id'] ?>">
+                <button class="btn btn-primary">Share</button>
+            </form>
+            <form action="profile.php" method="post" style="display:inline-block">
+                <input type="hidden" name="delete-list" value="<?php echo $todo_list['id'] ?>">
+                <button class="btn btn-danger">Delete</button>
+            </form>
+        <?php endif; ?>
+        </h3>
             <div class="col-lg-3">
             </div>
             <div class="col-lg-6">                

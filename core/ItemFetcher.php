@@ -73,7 +73,7 @@ class ItemFetcher
 
         $connection = new Connection();
         $statement = $connection->pdo->prepare(
-            'SELECT * FROM task ORDER BY id ASC;'
+            'SELECT * FROM task INNER JOIN public_task_shares ON task.id = public_task_shares.task_id ORDER BY id ASC;'
         );
 
         $statement->execute();

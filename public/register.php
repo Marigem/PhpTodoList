@@ -66,7 +66,7 @@ $passwordConfirm = "";
             if ($result)
             {
                 Application::$app->auth->login($email, $password);
-                Application::$app->creator->createTodoList("My first task is:", "Creating a new todo list!");
+                Application::$app->creator->createWelcomeTodoList();
                 header('Location: profile.php');
             }
         }

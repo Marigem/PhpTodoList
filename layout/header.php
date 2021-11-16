@@ -20,16 +20,21 @@ $app = new Application($auth, $session, $creator, $fetcher, $factory, $sharing);
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
+<script src="js/loadtheme.js"></script>
 
-<head lang="en" data-theme="light">
+<head lang="en">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/slider.css">
@@ -63,14 +68,16 @@ $app = new Application($auth, $session, $creator, $fetcher, $factory, $sharing);
                         </li>
                         <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link-custom" aria-current="page" href="profile.php"><?php echo Application::$app->auth->user->name ?></a>
+                            <a class="nav-link-custom" aria-current="page"
+                                href="profile.php"><?php echo Application::$app->auth->user->name ?></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link-custom" aria-current="page" href="inbox.php">inbox
-                            <?php $notificationCount = Application::$app->sharing->getNotificationCount();
-                                if ($notificationCount !== 0): ?>    
-                            <span class="badge bg-danger rounded-pill notification-span"><?php echo $notificationCount ?></span>
-                            <?php endif; ?>
+                                <?php $notificationCount = Application::$app->sharing->getNotificationCount();
+                                if ($notificationCount !== 0): ?>
+                                <span
+                                    class="badge bg-danger rounded-pill notification-span"><?php echo $notificationCount ?></span>
+                                <?php endif; ?>
                             </a>
                         </li>
                         <li class="nav-item">

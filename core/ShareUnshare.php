@@ -18,7 +18,7 @@ class ShareUnshare
             {
                 $statement = $connection->pdo->prepare(
                     'DELETE FROM private_shares WHERE list_id = :listId AND user_id = :userId;'
-            );
+                );
                 $this->deleteNotification($userId);
 
             }
@@ -74,7 +74,7 @@ class ShareUnshare
             {
                 $statement = $connection->pdo->prepare(
                     'DELETE FROM public_shares WHERE list_id = :listId;'
-            );
+                );
             }
     
             $statement->bindValue('listId', $listId);
@@ -134,5 +134,38 @@ class ShareUnshare
 
         $statement->bindValue('userId', Application::$app->auth->user->id);
         $statement->execute();
+    }
+
+    public function shareUnshareTask($taskId)
+    {
+        $connection = new Connection();
+
+        $statement = $connection->pdo->prepare(
+            'INSERT INTO public_task_shares (task_id) VALUES(:taskId);'
+        );
+
+        if ($this->taskAlreadyShared($taskId))
+        {
+            $statement = $connection->pdo->prepare(
+                'DELETE FROM public_task_shares WHERE task_id = :taskId;'
+            );
+        }
+
+        $statement->bindValue('taskId', $taskId);
+        $statement->execute();
+    }
+
+    public function taskAlreadyShared($taskId): bool
+    {
+        $connection = new Connection();
+
+        $statement = $connection->pdo->prepare(
+            'SELECT * FROM public_task_shares WHERE task_id = :taskId;'
+        );
+
+
+        $statement->bindValue('taskId', $taskId);
+        $statement->execute();
+        return $statement->rowCount() !== 0;
     }
 }

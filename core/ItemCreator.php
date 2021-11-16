@@ -2,6 +2,7 @@
 
 namespace app\core;
 
+use PDO;
 
 class ItemCreator {
     public function createTodoList($title, $description)
@@ -16,6 +17,8 @@ class ItemCreator {
         $statement->bindValue('title', $title);
         $statement->bindValue('description', $description);
         $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     public function deleteTodoList($id)
@@ -62,5 +65,15 @@ class ItemCreator {
             $statement->bindValue('id', $taskId);
             $statement->execute();
         }
+    }
+
+    public function createWelcomeTodoList()
+    {
+        $this->createTodoList("Welcome list!", "A list which will help you with getting started!");
+        $list = Application::$app->fetcher->fetchUserTodoLists()[0] ?? -1;
+        $this->createTask($list['id'], "Create a new list");
+        $this->createTask($list['id'], "Fill the list with tasks");
+        $this->createTask($list['id'], "Share the list");
+        $this->createTask($list['id'], "Share a task publicly!");
     }
 }

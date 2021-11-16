@@ -50,6 +50,7 @@ CREATE TABLE public_task_shares (
     task_id INT NOT NULL,
     FOREIGN KEY (task_id)
         REFERENCES task(id)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE notifications {
