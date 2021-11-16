@@ -81,7 +81,7 @@ $passwordConfirm = "";
             <input name="name" class="form-control <?php echo isset($errors['name']) ? "is-invalid" : "" ?>"
             value="<?php echo $name ?>" placeholder="Enter your full name">
             <div class="invalid-feedback">
-                <?php echo $errors['name'] ?>
+                <?php echo $errors['name'] ?? '' ?>
             </div>
         </div>
         <div class="mb-3">
@@ -89,7 +89,7 @@ $passwordConfirm = "";
             <input name="email" class="form-control <?php echo isset($errors['email']) ? "is-invalid" : "" ?>"
             value="<?php echo $email ?>" placeholder="Enter your email">
             <div class="invalid-feedback">
-                <?php echo $errors['email'] ?>
+                <?php echo $errors['email'] ?? '' ?>
             </div>
         </div>
         <div class="mb-3">
@@ -97,7 +97,7 @@ $passwordConfirm = "";
             <input type="password" name="password" class="form-control <?php echo isset($errors['password']) ? "is-invalid" : "" ?>"
             placeholder="Enter your password">
             <div class="invalid-feedback">
-                <?php echo $errors['password'] ?>
+                <?php echo $errors['password'] ?? '' ?>
             </div>
         </div>
         <div class="mb-3">
@@ -105,10 +105,12 @@ $passwordConfirm = "";
             <input type="password" name="passwordConfirm" class="form-control <?php echo isset($errors['passwordConfirm']) ? "is-invalid" : "" ?>"
             placeholder="Re-enter your password">
             <div class="invalid-feedback">
-                <?php echo $errors['passwordConfirm'] ?>
+                <?php echo $errors['passwordConfirm'] ?? '' ?>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="d-grid gap-2 mt-3">
+            <button type="submit" class="btn btn-primary large-form-buttons">Register</button>
+        </div>
     </form>
 
 

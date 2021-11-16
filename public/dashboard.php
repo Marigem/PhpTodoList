@@ -45,7 +45,7 @@ require_once __DIR__.'/../vendor/autoload.php';
             
             foreach ($public_tasks as $task)
             {
-                echo Application::$app->factory->taskItem($task['list-id'], $task, true);
+                echo Application::$app->factory->taskItem($task['list-id'] ?? -1, $task, true);
             }
 
 

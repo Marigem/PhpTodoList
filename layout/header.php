@@ -20,7 +20,7 @@ $app = new Application($auth, $session, $creator, $fetcher, $factory, $sharing);
 ?>
 
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <script src="js/loadtheme.js"></script>
 
 <head lang="en">
@@ -86,7 +86,7 @@ $app = new Application($auth, $session, $creator, $fetcher, $factory, $sharing);
                         <?php endif; ?>
                         <li class="nav-item">
                             <label class="switch">
-                                <input id="themeswitch" type="checkbox" name="theme">
+                                <input id="themeswitch" checked="true" type="checkbox" name="theme">
                                 <span class="slider round"></span>
                             </label>
                         </li>

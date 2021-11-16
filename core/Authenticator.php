@@ -96,6 +96,9 @@ class Authenticator
 
     public function userOwnsListItem($id): bool
     {
+        if (!$this->user)
+            return false;
+        
         $connection = new Connection();
         $statement = $connection->pdo->prepare(
             'SELECT * FROM todo_list WHERE id = :id'
@@ -103,8 +106,8 @@ class Authenticator
 
         $statement->bindValue('id', $id);
         $statement->execute();
-
         $result = $statement->fetch(PDO::FETCH_ASSOC);
+        
         return $result['user_id'] === $this->user->id;
     }
 }

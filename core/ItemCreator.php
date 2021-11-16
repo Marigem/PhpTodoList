@@ -69,7 +69,7 @@ class ItemCreator {
 
     public function createWelcomeTodoList()
     {
-        $this->createTodoList("Welcome list!", "A list which will help you with getting started!");
+        $this->createTodoList("Welcome list!", "A list to help you get started!");
         $list = Application::$app->fetcher->fetchUserTodoLists()[0] ?? -1;
         $this->createTask($list['id'], "Create a new list");
         $this->createTask($list['id'], "Fill the list with tasks");

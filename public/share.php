@@ -27,10 +27,10 @@ require_once __DIR__.'/../vendor/autoload.php';
 ?>
 
 <div class="row content p-4 text-center">
-    <div class="col-4">
+    <div class="col-lg-4">
 
     </div>
-    <div class="col-4 text-center">
+    <div class="col-lg-4 text-center">
     <h3 style="text-align:left">Share with...</h3>
     <br>
        <form class="d-grid gap-2" action="" method="post" style="display: inline-block;">

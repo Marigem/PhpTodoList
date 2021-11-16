@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input name="email" class="form-control <?php echo isset($errors['email']) ? "is-invalid" : "" ?>"
             value="<?php echo $email ?>" placeholder="Enter your email">
             <div class="invalid-feedback">
-                <?php echo $errors['email'] ?>
+                <?php echo $errors['email'] ?? '' ?>
             </div>
         </div>
         <div class="mb-3">
@@ -76,10 +76,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" name="password" class="form-control <?php echo isset($errors['password']) ? "is-invalid" : "" ?>"
             placeholder="Enter your password">
             <div class="invalid-feedback">
-                <?php echo $errors['password'] ?>
+                <?php echo $errors['password'] ?? '' ?>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary large-form-buttons">Log In</button>
+        </div>
+        <hr class="mt-3">
+        <div class="d-grid gap-2 col-6 mt-4 mx-auto">
+            <a href="register.php" class="btn btn-success large-form-buttons">Create an Account</a>
+        </div>
+
     </form>
 
 
