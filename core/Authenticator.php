@@ -107,6 +107,8 @@ class Authenticator
         $statement->bindValue('id', $id);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$result)
+            return false;
         
         return $result['user_id'] === $this->user->id;
     }

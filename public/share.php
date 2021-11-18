@@ -59,6 +59,11 @@ require_once __DIR__.'/../vendor/autoload.php';
     
 
     ?>
+ 
+    <li class="list-group-item text-start">
+        <a href="<?php echo $_SERVER['HTTP_REFERER'] ?>" class="btn btn-success mb-2">Go Back</a>
+    </li>
+
 
 
   <!-- <li class="list-group-item d-flex justify-content-between align-items-start">

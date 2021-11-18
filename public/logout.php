@@ -5,9 +5,9 @@
 use app\core\Application;
 if (Application::$app->auth->isGuest())
 {
-    header('Location: index.php');
+    header('Location: login.php');
     return;
 }
 Application::$app->auth->logout();
-header('Location: index.php');
+header('Location: login.php');
 ?>

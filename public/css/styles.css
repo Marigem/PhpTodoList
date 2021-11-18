@@ -1,5 +1,5 @@
 html {
-    --primary-background-color: #f9f9f9;
+    --primary-background-color: #b1cfcf2f;
     --alternate-background-color: #fff;
     --nav-bg: #fff;
     --nav-color: #191919;
@@ -11,7 +11,7 @@ html {
     --primary-text-color: #212529;
     --list-item-border-color: #ced4da95;
     --form-box-shadow-color: 107, 107, 107, 0.253;
-    
+    --list-item-hover-background-color: 235, 235, 235;
 }
 
 html[data-theme='dark'] {
@@ -29,6 +29,7 @@ html[data-theme='dark'] {
     --toggler-background-color: #fdfdfd;
     --list-item-border-color: #42424295;
     --form-box-shadow-color: 107, 107, 107, 0.253;
+    --list-item-hover-background-color: 46, 46, 46;
 }
 
 body {
@@ -172,6 +173,10 @@ body {
 .notification-span {
     display:table-cell;
     margin-bottom: 5px;
+}
+
+.list-group-item:hover {
+    background-color: rgb(var(--list-item-hover-background-color));
 }
 
 @media (max-width: 1024px) {

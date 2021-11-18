@@ -30,8 +30,12 @@ if (Application::$app->auth->isGuest())
 ?>
 
 
-<?php 
+<?php
+
 $errors = [];
+$title = "";
+$description = "";
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $delete_list_id = InputValidator::post_data("delete-list");
@@ -82,8 +86,8 @@ $userTodoLists = Application::$app->fetcher->fetchUserTodoLists();
                 <form action="" method="post">
                     <div class="mb-3">
                         <input name="title"
-                            class="form-control <?php echo (isset($errors["title"]) ? "is-invalid" : ''); ?>" value=""
-                            placeholder="Title"  maxlength="35">
+                            class="form-control <?php echo (isset($errors["title"]) ? "is-invalid" : ''); ?>" value="<?php echo $title ?>"
+                            placeholder="Title"  maxlength="75">
                         <div class="invalid-feedback">
                             <?php echo $errors['title'] ?? '' ?>
                         </div>
@@ -91,7 +95,7 @@ $userTodoLists = Application::$app->fetcher->fetchUserTodoLists();
                     <div class="mb-3">
                             <textarea name="description" 
                                 class="form-control <?php echo (isset($errors["description"]) ? "is-invalid" : ''); ?>" rows="3" 
-                                placeholder="Description" maxlength="135"></textarea>
+                                placeholder="Description" maxlength="135"><?php echo $description ?></textarea>
                         <div class="invalid-feedback">
                             <?php echo $errors['description'] ?? '' ?>
                         </div>

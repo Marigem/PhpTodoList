@@ -11,7 +11,7 @@ include_once __DIR__.'/../layout/header.php';
 
 if (!Application::$app->auth->isGuest())
 {
-    header('Location: index.php');
+    header('Location: dashboard.php');
 }
 
 $errors = [];
