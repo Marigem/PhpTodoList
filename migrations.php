@@ -1,5 +1,5 @@
 <?php 
-
+require_once __DIR__.'/vendor/autoload.php';
 use app\core\Connection;
 
 function prepare_and_execute($query)
@@ -13,7 +13,7 @@ function prepare_and_execute($query)
 }
 
 prepare_and_execute(
-    'CREATE TABLE users (
+    'CREATE TABLE IF NOT EXISTS users (
         id INT NOT NULL AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,
         email VARCHAR(1024) NOT NULL,
@@ -23,7 +23,7 @@ prepare_and_execute(
 );
 
 prepare_and_execute(
-    'CREATE TABLE todo_list (
+    'CREATE TABLE IF NOT EXISTS todo_list (
         id INT NOT NULL AUTO_INCREMENT,
         user_id INT NOT NULL,
         title VARCHAR(255) NOT NULL,
@@ -35,7 +35,7 @@ prepare_and_execute(
 );
 
 prepare_and_execute(
-    'CREATE TABLE task (
+    'CREATE TABLE IF NOT EXISTS task (
         id INT NOT NULL AUTO_INCREMENT,
         list_id INT NOT NULL,
         description VARCHAR(1024),
@@ -47,7 +47,7 @@ prepare_and_execute(
 );
 
 prepare_and_execute(
-    'CREATE TABLE public_shares (
+    'CREATE TABLE IF NOT EXISTS public_shares (
         list_id INT NOT NULL,
         FOREIGN KEY (list_id)
             REFERENCES todo_list(id)
@@ -56,7 +56,7 @@ prepare_and_execute(
 );
 
 prepare_and_execute(
-    'CREATE TABLE private_shares (
+    'CREATE TABLE IF NOT EXISTS private_shares (
         list_id INT NOT NULL,
         user_id INT NOT NULL,
         FOREIGN KEY (list_id)
@@ -68,7 +68,7 @@ prepare_and_execute(
 );
 
 prepare_and_execute(
-    'CREATE TABLE public_task_shares (
+    'CREATE TABLE IF NOT EXISTS public_task_shares (
         task_id INT NOT NULL,
         FOREIGN KEY (task_id)
             REFERENCES task(id)
@@ -77,18 +77,18 @@ prepare_and_execute(
 );
 
 prepare_and_execute(
-    'CREATE TABLE notifications {
+    'CREATE TABLE IF NOT EXISTS notifications (
         sender_id INT NOT NULL,
         recipient_id INT NOT NULL,
         FOREIGN KEY (sender_id)
             REFERENCES users(id),
         FOREIGN KEY (recipient_id)
             REFERENCES users(id)
-    };'
+    );'
 );
 
 prepare_and_execute(
-    'CREATE VIEW user_todo_view 
+    'CREATE VIEW IF NOT EXISTS user_todo_view 
     as SELECT users.id as user_id, 
     todo_list.id as list_id, 
     users.name as name, 
