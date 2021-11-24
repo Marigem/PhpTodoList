@@ -1,11 +1,24 @@
 # Setup
-cd project directory
-composer update
+<code>
+cd projectDirectory
+  
+composer update</code>
 
-setup connection variables in core/Connection.php
+### Setup connection variables in core/Connection.php
+<code>
+$dsn = "mysql:host=hostname:port;dbname=databaseName";
+  
+$this->pdo = new PDO($dsn, 'user', 'password');
+</code>
 
-Setup the database with
-php migrations.php
+### Setup the database with:
 
-Serve with
-php -S localhost:8000 -t ./public
+<code>php migrations.php</code> - If connection is setup properly this will not provide any output
+
+### Serve with:
+
+<code>php -S localhost:8000 -t ./public</code>
+
+### Open
+
+http://localhost:8000
