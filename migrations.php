@@ -28,6 +28,7 @@ prepare_and_execute(
         user_id INT NOT NULL,
         title VARCHAR(255) NOT NULL,
         description VARCHAR(255) NOT NULL,
+        due_date DATE,
         PRIMARY KEY (id),
         FOREIGN KEY (user_id)
             REFERENCES users(id)

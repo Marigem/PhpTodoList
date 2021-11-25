@@ -10,7 +10,7 @@ class Connection
 
     function __construct()
     {
-        $dsn = "mysql:host=192.168.0.32:3306;dbname=tododb";
+        $dsn = "mysql:host=192.168.0.32:3306;dbname=todo2";
         $this->pdo = new PDO($dsn, 'dbuser', 'password');
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }

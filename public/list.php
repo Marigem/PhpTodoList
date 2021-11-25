@@ -42,6 +42,18 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 
     $tasks = Application::$app->fetcher->fetchTasksByListId($todo_list['id']);
+
+    if (Application::$app->auth->isGuest() && !Application::$app->sharing->listIsPublic($todo_list['id']))
+    {
+        header("Location: dashboard.php");
+    }
+    else if (!Application::$app->auth->isGuest() 
+                && !Application::$app->auth->userOwnsListItem($todo_list['id'])
+                && !Application::$app->sharing->alreadySharedWith($todo_list['id'], Application::$app->auth->user->id)
+                && !Application::$app->sharing->listIsPublic($todo_list['id']))
+    {
+        header("Location: dashboard.php");
+    }
 ?>
 
 
@@ -51,6 +63,7 @@ require_once __DIR__.'/../vendor/autoload.php';
     <div class="col-lg-8 content">
 
         <div class="row">
+        <i class="pl-2 pt-2">Due: <?php echo $todo_list['due_date'] ?></i>
         <h3 class="text-center mt-4"><?php echo $todo_list['title'] ?>
 
         </h3>

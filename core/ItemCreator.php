@@ -5,17 +5,18 @@ namespace app\core;
 use PDO;
 
 class ItemCreator {
-    public function createTodoList($title, $description)
+    public function createTodoList($title, $description, $due_date)
     {
         $connection = new Connection();
         $statement = $connection->pdo->prepare(
-            'INSERT INTO todo_list (user_id, title, description) 
-            VALUES (:user_id, :title, :description);'
+            'INSERT INTO todo_list (user_id, title, description, due_date) 
+            VALUES (:user_id, :title, :description, :dueDate);'
         );
 
         $statement->bindValue('user_id', Application::$app->auth->user->id);
         $statement->bindValue('title', $title);
         $statement->bindValue('description', $description);
+        $statement->bindValue('dueDate', $due_date);
         $statement->execute();
 
         return $statement->fetch(PDO::FETCH_ASSOC);
@@ -69,7 +70,7 @@ class ItemCreator {
 
     public function createWelcomeTodoList()
     {
-        $this->createTodoList("Welcome list!", "A list to help you get started!");
+        $this->createTodoList("Welcome list!", "A list to help you get started!", "2021-11-25");
         $list = Application::$app->fetcher->fetchUserTodoLists()[0] ?? -1;
         $this->createTask($list['id'], "Create a new list");
         $this->createTask($list['id'], "Fill the list with tasks");

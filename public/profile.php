@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $delete_list_id = InputValidator::post_data("delete-list");
     $title = InputValidator::post_data("title");
     $description = InputValidator::post_data("description");
+    $due_date = InputValidator::post_data("due-date");
 
     if (!$delete_list_id)
     {
@@ -55,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     
         if (empty($errors))
         {
-            Application::$app->creator->createTodoList($title, $description);
+            Application::$app->creator->createTodoList($title, $description, $due_date);
         }
     }
     else
@@ -99,6 +100,10 @@ $userTodoLists = Application::$app->fetcher->fetchUserTodoLists();
                         <div class="invalid-feedback">
                             <?php echo $errors['description'] ?? '' ?>
                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Due date:</label>
+                        <input class="form-control" type="date" name="due-date" value="2021-11-25">
                     </div>
                     <div class="d-grid gap-2">
                         <button class="btn btn-primary" type="submit">Create list</button>
